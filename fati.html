@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> ¿Qué prefieres?🤔
+</title>
+  <style>
+    body {
+      font-family: "Comic Sans MS", cursive;
+      background-color: #fff;
+      background-image: url('https://ducunl0s4svtl.cloudfront.net/wp-content/uploads/2016/03/Simple-Snoopy-Wallpaper-.jpg');
+      background-size: 150px;
+      color: #333;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      color: #black;
+      margin-top: 30px;
+    }
+
+    .category {
+      margin: 25px auto;
+      width: 90%;
+      max-width: 400px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+
+    .option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 15px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .option img {
+      width: 60%;
+      border-radius: 15px;
+      border: 3px solid transparent;
+      transition: border 0.3s ease, transform 0.2s ease;
+    }
+
+    .option:hover img {
+      transform: scale(1.03);
+    }
+
+    .option.selected img {
+      border: 3px solid #ff4d6d;
+    }
+
+    button {
+      background-color: #ff4d6d;
+      border: none;
+      color: white;
+      font-size: 18px;
+      padding: 12px 25px;
+      border-radius: 25px;
+      cursor: pointer;
+      margin: 30px 0;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff7f94;
+    }
+
+    #results {
+      display: none;
+      margin-bottom: 40px;
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .result-item {
+      margin: 15px auto;
+      max-width: 300px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUp 0.6s ease forwards;
+    }
+
+    @keyframes slideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .result-item img {
+      width: 100%;
+      border-radius: 15px;
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: pink;
+      top: -10px;
+      opacity: 0.9;
+      animation: fall linear forwards;
+      z-index: 9999;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1> No preguntes nada, solo elige realmente lo que prefieras ¿si?
+💕</h1>
+
+  <div id="quiz">
+    
+    <div class="category" data-category="lugar">
+      <h3>¿Te gustaria salir a?</h3>
+      <div class="option"><img src="https://media.gq.com.mx/photos/620e915c43f71a078a35533f/master/pass/playa.jpg" alt="Viaje 1"></div> <p class="option-text">A una playa</p>
+      <div class="option"><img src="https://media.staticontent.com/media/pictures/5eb8bdbc-0f46-4512-9836-b5256ed0dee0" alt="Viaje 2"></div><p class="option-text">A una cabaña</p>
+    </div>
+
+    <div class="category" data-category="date">
+      <h3>¿Que prefieres comer en una date?</h3>
+      <div class="option"><img src="https://www.animalgourmet.com/wp-content/uploads/2024/01/Cafeterias-coquette2-jpg.webp" alt="Postre 1"></div>
+
+      <div class="option"><img src="https://www.recetasnestle.com.ec/sites/default/files/srh_recipes/4e4293857c03d819e4ae51de1e86d66a.jpg" alt="Postre 2"></div>
+
+    </div>
+
+    <div class="category" data-category="clima">
+      <h3>¿Que prefieres?</h3>
+      <div class="option"><img src="https://st3.depositphotos.com/5130171/19434/v/950/depositphotos_194344826-stock-illustration-cold-weather-boy.jpg" alt="Suéter 1"></div> <p class="option-text">Que haga frio</p>
+
+      <div class="option"><img src="https://st3.depositphotos.com/5130171/19434/v/950/depositphotos_194344970-stock-illustration-hot-weather-boy.jpg" alt="Suéter 2">
+ </div> <p class="option-text">Que haga calor</p>
+</div>
+   
+
+    <div class="category" data-category="uñas">
+      <h3>¿Que prefieres realizar?</h3>
+      <div class="option"><img src="https://m.media-amazon.com/images/I/61zG8du0ngL._AC_UF1000,1000_QL80_.jpg" alt="Uñas 1"></div>
+ <p class="option-text">Uñas acrilicas</p>
+      <div class="option"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY3ca75Yf6RTXjjNp4ooINwf4FDQ2HmnQP1g&s" alt="Uñas 2"></div>
+ <p class="option-text">Uñas con gelish</p>
+    </div>
+
+    <div class="category" data-category="quieresmas">
+      <h3>¿A quien quieres mas?</h3>
+      <div class="option"><img src="https://images.cults3d.com/i_MBp4uJS-ILfv2UB67iQ8hZhk0=/516x516/filters:no_upscale()/https://fbi.cults3d.com/uploaders/36408984/illustration-file/180659fb-1e7c-4df1-bc7f-6fb76c613241/enupivergiao.png" alt="Peluche 1"></div>
+<p class="option-text">Al snoopy todo verguiado</p>
+      <div class="option"><img src="https://scontent.fmty1-1.fna.fbcdn.net/v/t39.30808-6/481313874_588140244202626_6025097809562910543_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=IaFsxlAbO34Q7kNvwGMZYAd&_nc_oc=AdlNsU1sPBxHVaGfoaMNflCOtRVhM2Uch72byuvkL2Hdep23v05rNYYjCQgovBD9Mis&_nc_zt=23&_nc_ht=scontent.fmty1-1.fna&_nc_gid=f95m4_WNf-gtB7vPVTAEDw&oh=00_AfgWc0eYYOpXEhaMi_MuZJBlL4-JGqTu_jyDghqQb9H7VA&oe=69187D4D" alt="Peluche 2"></div>
+<p class="option-text">Yo de negro y perfumao</p>
+    </div>
+
+    <div class="category" data-category="hambre">
+      <h3>Si mueres de hambre ¿que comerias?</h3>
+      <div class="option"><img src="https://playersoflife.com/wp-content/uploads/2025/08/carls-jr-2025.jpg" alt="Pantalón 1"></div>
+<p class="option-text">Una hamburguesa del carls</p>
+      <div class="option"><img src="https://i0.wp.com/godinchilango.mx/wp-content/uploads/2024/11/35-anos-dominos-mexico-pizzas-grandes-199-ciudad-mexico-cdmx.jpg?fit=750%2C600&ssl=1" alt="Pantalón 2"></div>
+<p class="option-text">Una pizza del dominos (Que rico mamoooon)</p>
+    </div>
+
+    <div class="category" data-category="salida">
+      <h3>¿Te gusta mas salir a?</h3>
+      <div class="option"><img src="https://i0.wp.com/trestristescriticos.com/wp-content/uploads/2021/07/telefono-gratuito-cinesur.jpg?fit=1535%2C1024&ssl=1" alt="Tacones 1"></div>
+<p class="option-text">El cine</p>
+      <div class="option"><img src="https://unamglobal.unam.mx/wp-content/uploads/2022/04/conciertos-1-1.jpg" alt="Tacones 2"></div>
+<p class="option-text">Un concierto</p>
+    </div>
+
+    <div class="category" data-category="snoopy">
+      <h3>¿Que prefieres de snoopy?</h3>
+      <div class="option"><img src="https://log-on.com.mx/cdn/shop/files/Captura_de_pantalla_2025-04-24_171446.png?v=1745536681" alt="Dulces 1"></div>
+<p class="option-text">Un peluche</p>
+      <div class="option"><img src="https://resources.sears.com.mx/medios-plazavip/fotos/productos_sears1/original/4081897.jpg?scale=500&qlty=75" alt="Dulces 2"></div>
+<p class="option-text">Una pijama</p>
+    </div>
+
+<div class="category" data-category="tenis">
+      <h3>¿Que tenis te gustan mas?</h3>
+      <div class="option"><img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/3bbecbdf584e40398446a8bf0117cf62_9366/Tenis_Samba_OG_Blanco_B75806_01_00_standard.jpg" alt="Samba OG blancos">
+<p class="option-text">Samba OG blancos</p>
+</div>
+      <div class="option"><img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/bdd9f8cd43664fffbd3da8bf01188fca_9366/Tenis_Samba_OG_Negro_B75807_07_standard.jpg" alt="Samba OG negros">
+<p class="option-text">Samba OG negros</p>
+</div> 
+    </div>
+
+<div class="category" data-category="tenis">
+      <h3>¿Que reloj te gusta mas?</h3>
+      <div class="option"><img src="https://ss632.liverpool.com.mx/xl/1163576925.jpg" alt="Samba OG blancos"></div>
+<p class="option-text">Apple watch</p>
+      <div class="option"><img src="https://down-mx.img.susercontent.com/file/c5f52e2c8acee7a7e7119fe199212417" alt="Samba OG negros"></div> 
+<p class="option-text">Unclasicon</p>
+    </div>
+
+
+    <button id="showResults">Ver mis elecciones 💕</button>
+  </div>
+
+  <div id="results">
+    <h2>Gracias por jugar, Fátima 💖</h2>
+    <p>Estas fueron tus elecciones:</p>
+    <div id="resultsContainer"></div>
+    <button onclick="window.location.reload()">Volver a elegir 🔁</button>
+  </div>
+
+  <!-- 🌸 EmailJS (versión actualizada) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <script>
+    const categories = document.querySelectorAll('.category');
+    let results = {};
+
+    // 🔸 Cargar resultados guardados (si existen)
+    const savedResults = localStorage.getItem('fatimaResults');
+    if (savedResults) {
+      results = JSON.parse(savedResults);
+      Object.entries(results).forEach(([cat, src]) => {
+        const categoryDiv = document.querySelector(`.category[data-category="${cat}"]`);
+        if (categoryDiv) {
+          const img = categoryDiv.querySelector(`img[src="${src}"]`);
+          if (img) img.parentElement.classList.add('selected');
+        }
+      });
+    }
+
+    // 🔸 Selección de opciones
+    categories.forEach(cat => {
+      const options = cat.querySelectorAll('.option');
+      options.forEach(opt => {
+        opt.addEventListener('click', () => {
+          options.forEach(o => o.classList.remove('selected'));
+          opt.classList.add('selected');
+          results[cat.dataset.category] = opt.querySelector('img').src;
+          localStorage.setItem('fatimaResults', JSON.stringify(results));
+        });
+      });
+    });
+
+    // 🔸 Mostrar resultados
+    document.getElementById('showResults').addEventListener('click', () => {
+      const quiz = document.getElementById('quiz');
+      const resultsDiv = document.getElementById('results');
+      const container = document.getElementById('resultsContainer');
+      
+      container.innerHTML = '';
+      Object.entries(results).forEach(([cat, src], index) => {
+        const div = document.createElement('div');
+        div.classList.add('result-item');
+        div.style.animationDelay = `${index * 0.2}s`;
+        div.innerHTML = `<h4>${cat}</h4><img src="${src}" alt="${cat}">`;
+        container.appendChild(div);
+      });
+
+      quiz.style.display = 'none';
+      resultsDiv.style.display = 'block';
+      launchConfetti();
+      sendResultsByEmail(); // 💌 Enviar correo
+    });
+
+    // 🎊 Confeti
+    function launchConfetti() {
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        document.body.appendChild(confetti);
+        const colors = ['#ff4d6d', '#ffd6e0', '#ffb3c1', '#ffc8dd', '#ffe5ec', '#ff7f94'];
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        confetti.style.width = confetti.style.height = Math.random() * 10 + 5 + 'px';
+        setTimeout(() => confetti.remove(), 5000);
+      }
+    }
+
+    // 💌 Inicializar EmailJS al cargar todo
+    window.onload = function() {
+      emailjs.init("bJpSpS6d5gDnkDK7O");
+    };
+
+    // 💌 Enviar resultados por correo
+    function sendResultsByEmail() {
+      const message = Object.entries(results)
+        .map(([cat, src]) => `${cat}: ${src}`)
+        .join('\n');
+
+      const params = {
+        to_name: "Tu Nombre",
+        from_name: "Quiz Fátima 💕",
+        message: message,
+      };
+
+      console.log("📤 Enviando correo con:", params);
+
+      emailjs.send("service_aspvn24", "template_lqkcb7c", params)
+        .then((res) => {
+          console.log("✅ Enviado correctamente:", res);
+          alert("📨 Resultados enviados a tu correo!");
+        })
+        .catch(err => console.error("❌ Error al enviar:", err));
+    }
+  </script>
+</body>
+</html>
+
